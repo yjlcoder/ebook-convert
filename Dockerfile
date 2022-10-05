@@ -12,8 +12,9 @@ RUN echo "/opt/calibre/lib" > /etc/ld.so.conf.d/calibre.conf && \
     ldconfig && \
     pip3 install pyqt6 && \
     /opt/calibre/calibre_postinstall && \
-    rm -rf calibre-bin.txz
+    rm -rf calibre-bin.txz && \
+    mkdir /ebook-output
 
-WORKDIR /opt/calibre/bin
+WORKDIR /ebook-output
 
-ENTRYPOINT [ "ebook-convert" ]
+ENTRYPOINT [ "/opt/calibre/bin/ebook-convert" ]
